@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import {useState,useEffect} from 'react'
 import axios from 'axios'
 
 
@@ -30,7 +30,7 @@ export const SearchComponent = () => {
     }
     else{
         result = users.filter((dato)=>
-        dato.name.toLowerCase().include(search.toLocaleLowerCase())
+        dato.name.toLowerCase().includes(search.toLocaleLowerCase())
         )
     }
         
