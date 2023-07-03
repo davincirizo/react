@@ -1,24 +1,52 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-@keyframes logo-spin {
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+/* Inicio - Modificado */
+.App-header {  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);  
+}
+
+#Dark {
+  background-color: #282c34;
+  color: white;
+}
+#Dark a{
+  color: white;
+}
+
+#Light {
+  background-color: #f2f4f6;
+  color:#0d3f67;
+}
+
+.list li{
+  display:inline-block;
+  padding-left:3px;
+  padding-right:3px;
+}
+/* Fin Modificado */
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -26,27 +54,3 @@
     transform: rotate(360deg);
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-
-#Dark{
-background-color: black;
-color: azure;
-}
- #Light{
-  background-color: aliceblue;
-  color: black;
- }
