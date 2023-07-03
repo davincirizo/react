@@ -1,5 +1,5 @@
 import Crypto from "./component/Crypto"
-// import { SearchComponent } from "./component/SearchComponent"
+import { SearchComponent } from "./component/SearchComponent"
 
 
 
@@ -8,8 +8,8 @@ function App() {
 
   return (
     <>
-    {/* <SearchComponent/> */}
-    <Crypto/>
+    <SearchComponent/>
+    {/* <Crypto/> */}
     </>
   )
 }
