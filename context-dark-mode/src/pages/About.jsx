@@ -5,9 +5,9 @@ function About() {
   const {Theme} = useThemeContext() 
   return (
     <div>
-        <h1>Home</h1>
+        <h1>About</h1>
         <p>Theme {Theme}</p>
-        <p>Pagina de Inicio</p>
+        <p>Pagina de About</p>
     </div>
   )
 }

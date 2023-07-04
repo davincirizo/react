@@ -4,6 +4,11 @@ import './App.css'
 import ReactSwitch from 'react-switch'
 import { useState } from 'react'
 import { useThemeContext } from './context/ThemeContext'
+import { Route, Routes } from 'react-router'
+import Layouts from './pages/Layouts'
+import Home from './pages/Home'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 function App() {
   const {Theme,setTheme} = useThemeContext()
@@ -42,6 +47,15 @@ function App() {
       <div>
           <img src={viteLogo} className="logo" alt="Vite logo" />   
       </div>
+      <Routes>
+        <Route path='/' element={<Layouts/>}>
+          <Route index element={<Home/>}/>
+          <Route path='/about' element={<About/>}/>
+          <Route path='/contact' element={<Contact/>}/>
+
+        </Route>
+
+      </Routes>
       </header>
     </div>
     </>

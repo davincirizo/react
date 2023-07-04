@@ -5,9 +5,9 @@ function Contact() {
   const {Theme} = useThemeContext() 
   return (
     <div>
-        <h1>Home</h1>
+        <h1>Contact</h1>
         <p>Theme {Theme}</p>
-        <p>Pagina de Inicio</p>
+        <p>Pagina de Contact</p>
     </div>
   )
 }
