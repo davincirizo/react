@@ -22,6 +22,8 @@ export const SearchComponent = () => {
 
     const searcher = (e) =>{
         setSearch(e.target.value)
+        console.log(e.target.value)
+        console.log(search)
     }
 
     let result = []

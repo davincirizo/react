@@ -1,7 +1,8 @@
 import  { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import NavBar from '../general/NavBar'
+import ColorButtons from '../general/Button'
 
 const EditCategory = () => {
   const endpoint = 'http://127.0.0.1:8000/api/categories/'
@@ -29,8 +30,7 @@ const EditCategory = () => {
   return (
     <div>
       <NavBar/>
-        <h3>Edit Category</h3>
-        <form onSubmit={update}>
+        <form onSubmit={update} style={{marginLeft: '20px',marginTop:'20px'}}>
             <div className='mb-3'>
                 <label className='form-label'>Nombre</label>
                 <input
@@ -40,7 +40,17 @@ const EditCategory = () => {
                 className='form-control'
                 />
             </div>
-            <button type='submit' className='btn btn-primary'>Actualizar</button>
+            <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <ColorButtons
+                type='submit'
+                tittle='Guardar'/>
+             </div>
+             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <Link to='/'>
+                    <ColorButtons
+                    tittle='Descartar'/>
+                </Link>
+            </div>
         </form>
     </div>  
   )

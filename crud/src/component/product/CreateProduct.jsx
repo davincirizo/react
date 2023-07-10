@@ -1,16 +1,36 @@
 import axios from 'axios'
-import  { useState } from 'react'
+import  { useState,useEffect } from 'react'
 import { useNavigate, } from 'react-router-dom'
 import NavBar from '../general/NavBar'
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
+
+
 
 function CreateProduct() {
   const endpoint = 'http://127.0.0.1:8000/api/products'
+  const url_categories = 'http://127.0.0.1:8000/api/categories'
+    const [categories,setCategories] = useState([])
     const [name,setName] = useState('')
     const [price,setPrice] = useState(0)
     const [stock,setStock] = useState(0)
     const [category_id,setCategory_id] = useState(0)
 
     const navigate = useNavigate()
+
+  
+    useEffect(() =>{
+      getAllCategory()
+  },[])
+
+  const getAllCategory = async () =>{
+    const response = await axios.get(url_categories)
+    setCategories(response.data)
+}
     
     const store = async (e) =>{
         e.preventDefault()
@@ -56,14 +76,27 @@ function CreateProduct() {
               />
           </div>
           <div className='mb-3'>
-              <label className='form-label'>Categoria</label>
-              <input
-              value={category_id}
-              onChange={(e)=> setCategory_id(e.target.value)}
-              type='number'
-              className='form-control'
-              />
+            
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+             <InputLabel id="demo-simple-select-label">Categorias</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Categories"
+                  value={category_id}
+                  onChange={(e)=> setCategory_id(e.target.value)}
+            >
+                  {categories.map( (category) => (
+                    <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+                      
+                    ))}
+                </Select>
+              </FormControl>
+            </Box>
+             
           </div>
+         
           <button type='submit' className='btn btn-primary'>Guardar</button>
       </form>
     </div>
@@ -71,3 +104,7 @@ function CreateProduct() {
 }
 
 export default CreateProduct
+
+
+
+
