@@ -12,6 +12,8 @@ import EditProduct from './component/product/EditProduct'
 import RecipeReviewCard from './component/category/Card'
 
 
+
+
 function App() {
 
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path='/show_product' element={<ShowProduct/>}/>
         <Route path='/create_product' element={<CreateProduct/>}/>
         <Route path='/edit_product/:id' element={<EditProduct/>}/>
+
+
         
 
       </Routes>
