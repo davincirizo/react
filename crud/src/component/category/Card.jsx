@@ -27,7 +27,8 @@ import FloatingActionButtonSize from '../general/ButtonFloat';
 import Searching from '../general/Searching';
 import ColorButtons from '../general/Button';
 import { Button } from 'bootstrap';
-import TextButtons from '../general/TextButton';
+import ButtonsAvalaible from '../general/ButtonsAvalaible';
+import ButtonNoAvalaible from '../general/ButtonNoAvalaible';
 
 
 
@@ -85,19 +86,30 @@ export default function RecipeReviewCard() {
       <div  key={categori.id}  style={{ display: 'inline-block', marginLeft: '20px',marginTop:'20px' }}>
 
       
-      <Card sx={{ maxWidth: 345,minWidth:300 }}>
-        <CardHeader
-          
+      <Card sx={{ maxWidth: 345,minWidth:345 }}>
+        <CardHeader className='text-center'  
           title={categori.name}
-          
-
         />
-        <Link to='/show_product'>
-         <TextButtons
-         name='Productos'
-         />
+        {categori.qty_product ? (
+        <div className='text-center'>
+          <Link to='/show_product'>
+          
+          <ButtonsAvalaible
+          name='Productos'
+          cant={categori.qty_product}
+          />
          
-        </Link>
+         </Link>
+        </div>
+      ) : (
+        <div className='text-center'>
+          <ButtonNoAvalaible
+        name='Productos'/>
+        </div>
+      )}
+       
+
+        
        
         <CardContent>
           <Typography variant="body2" color="text.secondary">
@@ -115,7 +127,6 @@ export default function RecipeReviewCard() {
               <EditIcon />
             </IconButton>
           </Link>
-          {categori.qty_product}
         </CardActions>
       </Card>
       </div>

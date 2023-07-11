@@ -10,6 +10,7 @@ import CreateProduct from './component/product/CreateProduct'
 import EditProduct from './component/product/EditProduct'
 // import BasicCard from './component/category/Card'
 import RecipeReviewCard from './component/category/Card'
+import Prueba from './component/Prueba'
 
 
 
@@ -28,6 +29,8 @@ function App() {
         <Route path='/show_product' element={<ShowProduct/>}/>
         <Route path='/create_product' element={<CreateProduct/>}/>
         <Route path='/edit_product/:id' element={<EditProduct/>}/>
+        <Route path='/prueba' element={<Prueba/>}/>
+
 
 
         

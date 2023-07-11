@@ -6,9 +6,10 @@ import ColorButtons from '../general/Button'
 import VariantButtonGroup from '../general/GroupButtons'
 import FloatingActionButtonSize from '../general/ButtonFloat'
 import Searching from '../general/Searching'
+import { Button } from '@mui/material'
 
 const ShowCategory = () => {
-    
+
     const endpoint = 'http://127.0.0.1:8000/api'
     const [category,setCategory] = useState([])
     const[search,setSearch] = useState("")
@@ -47,6 +48,13 @@ const ShowCategory = () => {
 
   return (
     <>
+    <Link   
+    name='Juan'
+     to='/prueba'>
+    <Button>
+        For Play
+        </Button>        
+    </Link>
     <NavBar/>
     
         <div>
@@ -83,6 +91,7 @@ const ShowCategory = () => {
             </tbody>
         </table> 
         <Link to='/create_category'>
+            
         <FloatingActionButtonSize/>
       </Link>  
     </div>
