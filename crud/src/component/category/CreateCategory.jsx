@@ -54,11 +54,11 @@ const CreateCategory = () => {
                 type='submit'
                 tittle='Guardar'/>
              </div>
-             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
-                <Link>
+             <div onClick={()=>navigate(-1)} style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                
                     <ColorButtons
                     tittle='Descartar'/>
-                </Link>
+                
             </div>
             
            

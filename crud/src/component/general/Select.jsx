@@ -15,11 +15,8 @@ export default function BasicSelect(props) {
     const {type_default} = props
     
 
-    const [type_id,settype] = useState(type_default)
+    const [type_id,settype] = useState(0)
 
-  //  if(type_default){
-  //   settype(type_default)
-  //  }
 
     const handleChange = (event) => {
       settype(event.target.value);
@@ -28,12 +25,13 @@ export default function BasicSelect(props) {
        
       };
 
-      useEffect(() =>{
-          if(type_default){
-            settype(type_default)
-          }
+      // useEffect(() =>{
+      //     if(type_default){
+      //       settype(type_default)
+      //       console.log(type_default)
+      //     }
 
-      },[])
+      // },[])
 
   
   
@@ -46,7 +44,7 @@ export default function BasicSelect(props) {
             id="demo-simple-select"
             label="Categories"
             onChange={handleChange}
-            value={type_id}
+            value={type_default}
            
           >
             {types.map( (type) => (

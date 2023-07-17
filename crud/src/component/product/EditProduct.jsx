@@ -41,6 +41,7 @@ function EditProduct() {
          setPrice(response.data.price)
          setStock(response.data.stock)
          setCategory_id(response.data.category_id)
+         console.log(category_id)
          getAllCategory()
          
       
@@ -83,15 +84,7 @@ function EditProduct() {
               className='form-control'
               />
           </div>
-          <div className='mb-3'>
-              <label className='form-label'>Categoria</label>
-              <input
-              value={category_id}
-              onChange={(e)=> setCategory_id(e.target.value)}
-              type='number'
-              className='form-control'
-              />
-          </div>
+         
           <BasicSelect
           tittle='Categorias'
           types={categories}
@@ -103,11 +96,11 @@ function EditProduct() {
                 type='submit'
                 tittle='Guardar'/>
              </div>
-             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
-                <Link>
+             <div onClick={()=>navigate(-1)} style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                
                     <ColorButtons
                     tittle='Descartar'/>
-                </Link>
+                
             </div>
         </form>
     </div>  

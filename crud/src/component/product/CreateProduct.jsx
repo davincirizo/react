@@ -89,36 +89,20 @@ function CreateProduct() {
           types={categories}
           enviarValue={enviarValue}
           />
-          {/* <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-             <InputLabel id="demo-simple-select-label">Categorias</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Categories"
-                  value={category_id}
-                  onChange={(e)=> setCategory_id(e.target.value)}
-            >
-                  {categories.map( (category) => (
-                    <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-                      
-                    ))}
-                </Select>
-              </FormControl>
-            </Box> */}
+        
              
           </div>
          
-          <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+              <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
                 <ColorButtons
                 type='submit'
                 tittle='Guardar'/>
              </div>
-             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
-                <Link>
+             <div onClick={()=>navigate(-1)} style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                
                     <ColorButtons
                     tittle='Descartar'/>
-                </Link>
+                
             </div>
       </form>
 
