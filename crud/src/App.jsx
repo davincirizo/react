@@ -8,9 +8,11 @@ import EditCategory from './component/category/EditCategory'
 import ShowProduct from './component/product/ShowProduct'
 import CreateProduct from './component/product/CreateProduct'
 import EditProduct from './component/product/EditProduct'
-// import BasicCard from './component/category/Card'
-import RecipeReviewCard from './component/category/Card'
-import Prueba from './component/Prueba'
+import ShowProductFilter from './component/product/ShowProductByCategory'
+
+
+
+
 
 
 
@@ -22,14 +24,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<ShowCategory/>}/>
-        <Route path='/view_card_category' element={<RecipeReviewCard/>}/>
         <Route path='/create_category' element={<CreateCategory/>}/>
         <Route path='/edit_category/:id' element={<EditCategory/>}/>
         
         <Route path='/show_product' element={<ShowProduct/>}/>
         <Route path='/create_product' element={<CreateProduct/>}/>
         <Route path='/edit_product/:id' element={<EditProduct/>}/>
-        <Route path='/prueba' element={<Prueba/>}/>
+        <Route path='/product_filter/:id' element={<ShowProductFilter/>}/>
+       
 
 
 

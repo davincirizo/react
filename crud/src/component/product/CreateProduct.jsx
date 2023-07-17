@@ -1,12 +1,14 @@
 import axios from 'axios'
 import  { useState,useEffect } from 'react'
-import { useNavigate, } from 'react-router-dom'
+import { Link, useNavigate, } from 'react-router-dom'
 import NavBar from '../general/NavBar'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import ColorButtons from '../general/Button';
+import BasicSelect from '../general/Select';
 
 
 
@@ -31,6 +33,11 @@ function CreateProduct() {
     const response = await axios.get(url_categories)
     setCategories(response.data)
 }
+
+  const enviarValue = (msg) =>{
+    setCategory_id(msg.target.value)
+    console.log(category_id)
+} 
     
     const store = async (e) =>{
         e.preventDefault()
@@ -46,7 +53,7 @@ function CreateProduct() {
   return (
     <div>
       <NavBar/>
-      <h3>Create Product</h3>
+     
       <form onSubmit={store}>
           <div className='mb-3'>
               <label className='form-label'>Nombre</label>
@@ -77,7 +84,12 @@ function CreateProduct() {
           </div>
           <div className='mb-3'>
             
-          <Box sx={{ minWidth: 120 }}>
+          <BasicSelect
+          tittle='Categorias'
+          types={categories}
+          enviarValue={enviarValue}
+          />
+          {/* <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
              <InputLabel id="demo-simple-select-label">Categorias</InputLabel>
                 <Select
@@ -93,12 +105,23 @@ function CreateProduct() {
                     ))}
                 </Select>
               </FormControl>
-            </Box>
+            </Box> */}
              
           </div>
          
-          <button type='submit' className='btn btn-primary'>Guardar</button>
+          <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <ColorButtons
+                type='submit'
+                tittle='Guardar'/>
+             </div>
+             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <Link>
+                    <ColorButtons
+                    tittle='Descartar'/>
+                </Link>
+            </div>
       </form>
+
     </div>
   )
 }

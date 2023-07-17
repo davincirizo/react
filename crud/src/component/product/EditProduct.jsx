@@ -1,10 +1,14 @@
 import  { useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import NavBar from '../general/NavBar'
+import ColorButtons from '../general/Button'
+import BasicSelect from '../general/Select'
 
 function EditProduct() {
   const endpoint = 'http://127.0.0.1:8000/api/products/'
+  const url_categories = 'http://127.0.0.1:8000/api/categories'
+  const [categories,setCategories] = useState([])
     const [name,setName] = useState('')
     const [price,setPrice] = useState(0)
     const [stock,setStock] = useState(0)
@@ -22,7 +26,14 @@ function EditProduct() {
       })
       navigate('/show_product')
     }
+    const getAllCategory = async () =>{
+      const response = await axios.get(url_categories)
+      setCategories(response.data)
+  }
 
+   const enviarValue = (msg) =>{
+    setCategory_id(msg.target.value)
+} 
     useEffect(() =>{
       const getProductById  = async ()=>{
          const response = await axios.get(`${endpoint}${id}`)
@@ -30,10 +41,12 @@ function EditProduct() {
          setPrice(response.data.price)
          setStock(response.data.stock)
          setCategory_id(response.data.category_id)
-
-         console.log(name)
+         getAllCategory()
+         
+      
       }
       getProductById()
+      console.log(category_id)
        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -79,7 +92,23 @@ function EditProduct() {
               className='form-control'
               />
           </div>
-            <button type='submit' className='btn btn-primary'>Actualizar</button>
+          <BasicSelect
+          tittle='Categorias'
+          types={categories}
+          enviarValue={enviarValue}
+          type_default={category_id}
+          />
+          <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <ColorButtons
+                type='submit'
+                tittle='Guardar'/>
+             </div>
+             <div style={{ display: 'inline-block', marginLeft: '10px',marginTop:'20px' }}>
+                <Link>
+                    <ColorButtons
+                    tittle='Descartar'/>
+                </Link>
+            </div>
         </form>
     </div>  
   )

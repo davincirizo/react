@@ -4,31 +4,38 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 
 
 export default function BasicSelect(props) {
-    // const url_categories = 'http://127.0.0.1:8000/api/categories'
     const {tittle} = props
-    const {categories} = props
-    const {category} = props
-
-    const [category_id,setCategory] = useState(0)
-    // const [categories,setCategories] = useState([])
+    const {types} = props
+    const {enviarValue} = props
+    const {type_default} = props
     
-    // useEffect(() =>{
-    //     getAllCategory()
-    // },[])
+
+    const [type_id,settype] = useState(type_default)
+
+  //  if(type_default){
+  //   settype(type_default)
+  //  }
 
     const handleChange = (event) => {
-        setCategory(event.target.value);
-        // console.log(category_id)
+      settype(event.target.value);
+      enviarValue(event)
+  
+       
       };
 
-    // const getAllCategory = async () =>{
-    //     const response = await axios.get(url_categories)
-    //     setCategories(response.data)
-    // }
+      useEffect(() =>{
+          if(type_default){
+            settype(type_default)
+          }
+
+      },[])
+
+  
   
     return (
       <Box sx={{ minWidth: 120 }}>
@@ -39,11 +46,11 @@ export default function BasicSelect(props) {
             id="demo-simple-select"
             label="Categories"
             onChange={handleChange}
-            value={category_id}
+            value={type_id}
            
           >
-            {categories.map( (category) => (
-                <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
+            {types.map( (type) => (
+                <MenuItem key={type.id} value={type.id}>{type.name}</MenuItem>
                     
                 ))}
           </Select>

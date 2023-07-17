@@ -1,24 +1,26 @@
 
+
 import NavBar from '../general/NavBar'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import ProductList from './views/ProductTree'
 import ProductCard from './views/ProductCard'
 import ViewButtons from '../general/ViewButtons'
+import { useParams } from 'react-router-dom'
 
 
-function ShowProduct() {
-    const endpoint = 'http://127.0.0.1:8000/api'
+function ShowProductFilter() {
+    const endpoint = 'http://127.0.0.1:8000/api/products/category/'
     const [products,setProducts] = useState([])
     const [typeView,setTypeView] = useState('tree')
-
+    const {id} = useParams()
     
     useEffect (() =>{
       getAllProducts();
     }, [])
 
     const getAllProducts = async () =>{
-    const response = await axios.get(`${endpoint}/products`)
+    const response = await axios.get(`${endpoint}${id}`)
     setProducts(response.data.data)
     }
 
@@ -54,4 +56,4 @@ function ShowProduct() {
   )
 }
 
-export default ShowProduct
+export default ShowProductFilter
