@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import SwitchTheme from './Switch';
 
 
 function NavBar() {
@@ -21,7 +22,10 @@ function NavBar() {
             <Typography variant="h6" color="inherit" component="div">
             <Link to={'/show_product'} className='btn btn-warning ml-3'>Productos</Link>
           </Typography>
-          
+          <div style={{ marginLeft: '1100px' }}>
+          <SwitchTheme/>
+
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

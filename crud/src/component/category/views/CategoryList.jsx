@@ -6,12 +6,13 @@ import VariantButtonGroup from '../../general/ViewButtons'
 import FloatingActionButtonSize from '../../general/ButtonFloat'
 import { useState } from 'react'
 import axios from 'axios'
+import { useThemeContext } from '../../../context/ThemeContext'
 
 
 function CategoryList(props) {
   const {category} = props
   const {deleteCategory} = props
-  
+  const {Theme} = useThemeContext()
 
 
   // const {deleteCategory} = props
@@ -46,7 +47,7 @@ function CategoryList(props) {
 <Searching
 enviarSearch={enviarSearch}/>
             
-    <table className='table table-striped'>
+    <table id={Theme} className='table table-striped'>
         <thead className='bg-primary text-white'>
             <tr>
                 <th>ID</th>

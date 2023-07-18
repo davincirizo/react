@@ -1,15 +1,16 @@
 import axios from 'axios'
 import  { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import NavBar from '../general/NavBar'
 import ColorButtons from '../general/Button'
+import { useThemeContext } from '../../context/ThemeContext'
 
 
 const CreateCategory = () => {
     const endpoint = 'http://127.0.0.1:8000/api/categories'
     const [name,setName] = useState('')
     const [description,setDescription] = useState('')
-    
+    const {Theme} = useThemeContext()
 
 
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ const CreateCategory = () => {
     }
     
     return (
-    <div>
+    <div id={Theme}>
         <NavBar/>
 
         <form style={{marginLeft: '20px',marginTop:'20px'}} onSubmit={store}>

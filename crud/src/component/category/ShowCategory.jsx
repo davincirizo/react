@@ -4,13 +4,15 @@ import CategoryList from './views/CategoryList'
 import NavBar from '../general/NavBar'
 import CategoryCard from './views/CategoryCard'
 import ViewButtons from '../general/ViewButtons'
+import '../../App.css'
+import { useThemeContext } from '../../context/ThemeContext'
 
 const ShowCategory = () => {
 
     const endpoint = 'http://127.0.0.1:8000/api'
     const [category,setCategory] = useState([])
     const [typeView,setTypeView] = useState('tree')
-
+    const {Theme} = useThemeContext()
 
     useEffect (() =>{
         getAllCategory()
@@ -35,7 +37,7 @@ const ShowCategory = () => {
     
 
   return (
-    <>
+    <div id={Theme}>
  
       <NavBar/>
 
@@ -54,7 +56,7 @@ const ShowCategory = () => {
      deleteCategory={deleteCategory}
      />}
      
-    </>
+    </div>
   )
 }
 

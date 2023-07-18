@@ -15,7 +15,8 @@ function EditProduct() {
     const [category_id,setCategory_id] = useState(0)
     const navigate = useNavigate()
     const {id} = useParams()
-
+    const {Theme} = useThemeContext()
+    
     const update = async (e)=>{
       e.preventDefault()
       await axios.put(`${endpoint}${id}`,{
@@ -53,7 +54,7 @@ function EditProduct() {
 
 
   return (
-    <div>
+    <div id={Theme}>
       <NavBar/>
         <h3>Edit Product</h3>
         <form onSubmit={update}>

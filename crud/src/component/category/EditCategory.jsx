@@ -3,9 +3,11 @@ import axios from 'axios'
 import {useNavigate, useParams, } from 'react-router-dom'
 import NavBar from '../general/NavBar'
 import ColorButtons from '../general/Button'
+import { useThemeContext } from '../../context/ThemeContext'
 
 
 const EditCategory = () => {
+  const {Theme} = useThemeContext()
   const endpoint = 'http://127.0.0.1:8000/api/categories/'
   const [name,setName] = useState('')
   const navigate = useNavigate()
@@ -29,7 +31,7 @@ const EditCategory = () => {
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   return (
-    <div>
+    <div id={Theme}>
       <NavBar/>
         <form onSubmit={update} style={{marginLeft: '20px',marginTop:'20px'}}>
             <div className='mb-3'>

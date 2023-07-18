@@ -1,0 +1,9 @@
+#Dark{
+    background-color: black;
+    color: aliceblue;
+}
+
+#Light{
+    background-color: aliceblue;
+    color: black;
+}

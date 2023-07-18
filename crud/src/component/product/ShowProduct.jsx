@@ -5,13 +5,15 @@ import { useEffect, useState } from 'react'
 import ProductList from './views/ProductTree'
 import ProductCard from './views/ProductCard'
 import ViewButtons from '../general/ViewButtons'
+import { useThemeContext } from '../../context/ThemeContext'
 
 
 function ShowProduct() {
     const endpoint = 'http://127.0.0.1:8000/api'
     const [products,setProducts] = useState([])
     const [typeView,setTypeView] = useState('tree')
-
+    const {Theme} = useThemeContext()
+    
     
     useEffect (() =>{
       getAllProducts();
@@ -32,7 +34,7 @@ function ShowProduct() {
   }
 
   return (
-    <div>
+    <div id={Theme}>
         <NavBar/> 
         <ViewButtons
       enviarTypeView={enviarTypeView}/>

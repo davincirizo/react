@@ -21,6 +21,7 @@ function CreateProduct() {
     const [price,setPrice] = useState(0)
     const [stock,setStock] = useState(0)
     const [category_id,setCategory_id] = useState(0)
+    
 
     const navigate = useNavigate()
 

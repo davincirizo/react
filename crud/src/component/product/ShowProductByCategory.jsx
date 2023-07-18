@@ -7,6 +7,7 @@ import ProductList from './views/ProductTree'
 import ProductCard from './views/ProductCard'
 import ViewButtons from '../general/ViewButtons'
 import { useParams } from 'react-router-dom'
+import { useThemeContext } from '../../context/ThemeContext'
 
 
 function ShowProductFilter() {
@@ -14,6 +15,8 @@ function ShowProductFilter() {
     const [products,setProducts] = useState([])
     const [typeView,setTypeView] = useState('tree')
     const {id} = useParams()
+    const {Theme} = useThemeContext()
+
     
     useEffect (() =>{
       getAllProducts();
@@ -34,7 +37,7 @@ function ShowProductFilter() {
   }
 
   return (
-    <div>
+    <div id={Theme}>
         <NavBar/> 
         <ViewButtons
       enviarTypeView={enviarTypeView}/>
