@@ -17,13 +17,20 @@ function NavBar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
-            <Link to={'/'} className='btn btn-warning ml-3'>Categorias</Link>
+            <Link to={'/show_category'} className='btn btn-warning ml-3'>Categorias</Link>
             </Typography  >
             <Typography variant="h6" color="inherit" component="div">
             <Link to={'/show_product'} className='btn btn-warning ml-3'>Productos</Link>
           </Typography>
+          
           <div style={{ marginLeft: '1100px' }}>
           <SwitchTheme/>
+          <Typography variant="h6" color="inherit" component="div">
+            <Link to={'/'} className='btn btn-warning ml-3'>Login</Link>
+          </Typography>
+          <Typography variant="h6" color="inherit" component="div">
+            <Link to={'/register'} className='btn btn-warning ml-3'>Register</Link>
+          </Typography>
 
           </div>
         </Toolbar>

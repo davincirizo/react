@@ -6,12 +6,13 @@ import CategoryCard from './views/CategoryCard'
 import ViewButtons from '../general/ViewButtons'
 import '../../App.css'
 import { useThemeContext } from '../../context/ThemeContext'
+import { ViewProductContextProvider, useViewProductContext } from '../../context/ViewProductContext'
 
 const ShowCategory = () => {
 
     const endpoint = 'http://127.0.0.1:8000/api'
     const [category,setCategory] = useState([])
-    const [typeView,setTypeView] = useState('tree')
+    const {ViewProduct} = useViewProductContext()
     const {Theme} = useThemeContext()
 
     useEffect (() =>{
@@ -29,24 +30,22 @@ const ShowCategory = () => {
   }
 
   
-  const enviarTypeView = (msg) =>{
-    setTypeView(msg)
-  }
+ 
    
 
     
 
   return (
+  // <ViewProductContextProvider>
     <div id={Theme}>
  
       <NavBar/>
 
-      <ViewButtons
-      enviarTypeView={enviarTypeView}/>
+      <ViewButtons/>
     
    
 
-    {typeView === 'tree' ?
+    {ViewProduct === 'tree' ?
      <CategoryList
      category={category}
      deleteCategory={deleteCategory}
@@ -57,6 +56,8 @@ const ShowCategory = () => {
      />}
      
     </div>
+    // </ViewProductContextProvider>
+
   )
 }
 

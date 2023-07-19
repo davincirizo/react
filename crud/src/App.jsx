@@ -9,6 +9,9 @@ import ShowProduct from './component/product/ShowProduct'
 import CreateProduct from './component/product/CreateProduct'
 import EditProduct from './component/product/EditProduct'
 import ShowProductFilter from './component/product/ShowProductByCategory'
+import LoginUser from './component/login/Login'
+import Register from './component/login/Register'
+
 
 
 
@@ -23,7 +26,11 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<ShowCategory/>}/>
+      <Route path='/' element={<LoginUser/>}/>
+      <Route path='/register' element={<Register/>}/>
+
+
+        <Route path='/show_category' element={<ShowCategory/>}/>
         <Route path='/create_category' element={<CreateCategory/>}/>
         <Route path='/edit_category/:id' element={<EditCategory/>}/>
         

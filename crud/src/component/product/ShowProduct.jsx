@@ -6,13 +6,15 @@ import ProductList from './views/ProductTree'
 import ProductCard from './views/ProductCard'
 import ViewButtons from '../general/ViewButtons'
 import { useThemeContext } from '../../context/ThemeContext'
+import { ViewProductContextProvider, useViewProductContext } from '../../context/ViewProductContext'
 
 
 function ShowProduct() {
     const endpoint = 'http://127.0.0.1:8000/api'
     const [products,setProducts] = useState([])
-    const [typeView,setTypeView] = useState('tree')
+    // const [typeView,setTypeView] = useState('tree')
     const {Theme} = useThemeContext()
+    const {ViewProduct} = useViewProductContext()
     
     
     useEffect (() =>{
@@ -29,17 +31,18 @@ function ShowProduct() {
     getAllProducts()
        
   }
-  const enviarTypeView = (msg) =>{
-    setTypeView(msg)
-  }
+  // const enviarTypeView = (msg) =>{
+  //   setTypeView(msg)
+  // }
 
   return (
+    // <ViewProductContextProvider>
+
     <div id={Theme}>
         <NavBar/> 
-        <ViewButtons
-      enviarTypeView={enviarTypeView}/>
+        <ViewButtons/>
         <div>
-      {typeView === 'tree' ?
+      {ViewProduct === 'tree' ?
        <ProductList
        products={products}
        deleteProduct={deleteProduct}
@@ -48,11 +51,10 @@ function ShowProduct() {
        products={products}
        deleteProduct={deleteProduct}
        />}
-       
-         
-        
     </div>
     </div>
+    // </ViewProductContextProvider>
+
   )
 }
 

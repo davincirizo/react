@@ -2,18 +2,18 @@
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import { useState } from 'react';
+import { useViewProductContext } from '../../context/ViewProductContext';
 
-export default function ViewButtons({enviarTypeView}) {
-  const [typeView,setTypeView] = useState('tree')
+export default function ViewButtons() {
+  // const [typeView,setTypeView] = useState('tree')
+  const {setViewProduct} = useViewProductContext()
   
   const ViewTree = () =>{
-    setTypeView('tree')
-    enviarTypeView('tree')
+    setViewProduct('tree')
   }
 
   const ViewCard = () =>{
-    setTypeView('card')
-    enviarTypeView('card')
+    setViewProduct('card')
   }
   return (
     <ButtonGroup variant="contained" aria-label="outlined primary button group">
