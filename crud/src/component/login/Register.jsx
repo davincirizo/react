@@ -8,11 +8,11 @@ function Register() {
   const { register , handleSubmit, formState:{errors},watch }= useForm()
   const navigate = useNavigate()
     
-  const login = async (data) =>{
-      await axios.post(endpoint,{
-          name:data.name,
-          email:data.email,
-          password:data.password,
+  const Register = async (e) =>{ 
+    await axios.post(endpoint,{
+          name:e.name,
+          email:e.email,
+          password:e.password,
           
       })
       navigate('/show_category')
@@ -20,7 +20,7 @@ function Register() {
   return (
     <>
     <NavBar/>
-    <form onSubmit={ handleSubmit(login) } className='form-react'>
+    <form onSubmit={ handleSubmit(Register) } className='form-react'>
     <div className='form-control'>
         <label>
            Name
