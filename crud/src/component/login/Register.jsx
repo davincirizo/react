@@ -8,10 +8,11 @@ import ColorButtons from '../general/Button'
 function Register() {
   const endpoint = 'http://127.0.0.1:8000/api/registro'  
   // const { register , handleSubmit, formState:{errors},watch }= useForm()
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name,setName] = useState('')
   const [email,setEmail] = useState('')
-  const [password,setPassword] = useState('')
+  const [password,setPassword] = useState('');
+  const [errors,setErrors] = useState([]);
 
   const Register = async (event) =>{
     event.preventDefault()
@@ -24,10 +25,16 @@ function Register() {
     })
   }
   catch(e){
-    console.log(e.response.data.errors)
+    if(e.response.status === 400){
+  
+      
+      setErrors(e.response.data.errors)
+      console.log(errors[0])
+     
+    }
   }
     
-    navigate('/')
+    
 }
   // const Register = async (e) =>{ 
   //   console.log(e)
@@ -52,6 +59,9 @@ function Register() {
                 type='text'
                 className='form-control'
                 />
+                {errors[0] &&(
+                  <span>{errors[0]}</span>
+                )}
             </div>
             <div className='mb-3'>
                 <label className='form-label'>Email</label>
