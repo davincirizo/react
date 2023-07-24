@@ -26,11 +26,7 @@ function Register() {
   }
   catch(e){
     if(e.response.status === 400){
-  
-      
       setErrors(e.response.data.errors)
-      console.log(errors[0])
-     
     }
   }
     
@@ -59,8 +55,8 @@ function Register() {
                 type='text'
                 className='form-control'
                 />
-                {errors[0] &&(
-                  <span>{errors[0]}</span>
+                {errors.name &&(
+                  <span>{errors.name}</span>
                 )}
             </div>
             <div className='mb-3'>
@@ -70,7 +66,11 @@ function Register() {
                 onChange={(e)=> setEmail(e.target.value)}
                 type='text'
                 className='form-control'
+                
                 />
+                {errors.email &&(
+                  <span>{errors.email}</span>
+                )}
             </div>
             <div className='mb-3'>
                 <label className='form-label'>Password</label>
@@ -80,6 +80,9 @@ function Register() {
                 type='text'
                 className='form-control'
                 />
+                {errors.password &&(
+                  <span>{errors.password}</span>
+                )}
             </div>
 
 

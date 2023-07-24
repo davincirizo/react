@@ -1,6 +1,4 @@
-
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import { BrowserRouter, Routes ,Route} from 'react-router-dom'
 import ShowCategory from './component/category/ShowCategory'
 import CreateCategory from './component/category/CreateCategory'
@@ -11,13 +9,7 @@ import EditProduct from './component/product/EditProduct'
 import ShowProductFilter from './component/product/ShowProductByCategory'
 import LoginUser from './component/login/Login'
 import Register from './component/login/Register'
-
-
-
-
-
-
-
+import Profile from './user/Profile'
 
 
 function App() {
@@ -28,8 +20,7 @@ function App() {
       <Routes>
       <Route path='/' element={<LoginUser/>}/>
       <Route path='/register' element={<Register/>}/>
-
-
+      {/* <Route element={<ProtectedRoutes/>}> */}
         <Route path='/show_category' element={<ShowCategory/>}/>
         <Route path='/create_category' element={<CreateCategory/>}/>
         <Route path='/edit_category/:id' element={<EditCategory/>}/>
@@ -38,12 +29,10 @@ function App() {
         <Route path='/create_product' element={<CreateProduct/>}/>
         <Route path='/edit_product/:id' element={<EditProduct/>}/>
         <Route path='/product_filter/:id' element={<ShowProductFilter/>}/>
-       
 
+        <Route path='/user_profile' element={<Profile/>}/>
 
-
-        
-
+      {/* </Route> */}
       </Routes>
     </BrowserRouter>
     

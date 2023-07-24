@@ -7,6 +7,8 @@ import ViewButtons from '../general/ViewButtons'
 import '../../App.css'
 import { useThemeContext } from '../../context/ThemeContext'
 import { ViewProductContextProvider, useViewProductContext } from '../../context/ViewProductContext'
+import storage from '../../storage/Storage'
+import { useNavigate } from 'react-router-dom'
 
 const ShowCategory = () => {
 
@@ -14,14 +16,25 @@ const ShowCategory = () => {
     const [category,setCategory] = useState([])
     const {ViewProduct} = useViewProductContext()
     const {Theme} = useThemeContext()
-
+    const navigate = useNavigate()
     useEffect (() =>{
         getAllCategory()
     },[])
 
     const getAllCategory = async () =>{
-        const response = await axios.get(`${endpoint}/categories`)
+      if (storage.get('authUser')){
+        const token = storage.get('authToken')
+        const response = await axios.get(`${endpoint}/categories`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        })
         setCategory(response.data)
+      }
+      else{
+        navigate('/')
+      }
+        
     }
 
     const deleteCategory = async (id) =>{
