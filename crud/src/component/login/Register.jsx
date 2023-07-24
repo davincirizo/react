@@ -23,6 +23,7 @@ function Register() {
         email:email,
         password:password
     })
+    navigate('/')
   }
   catch(e){
     if(e.response.status === 400){

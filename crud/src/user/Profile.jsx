@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import ColorButtons from "../component/general/Button"
 import { useNavigate } from "react-router-dom"
+import { Avatar } from "@mui/material"
 
 
 
@@ -16,8 +17,8 @@ function Profile() {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [id,setId] = useState('')
-    const [image,setImage] = useState('')
-    console.log(image)
+    const [image,setImage] = useState(null)
+
     const navigate = useNavigate()
 
     const getUserLogued  = async ()=>{
@@ -36,10 +37,11 @@ function Profile() {
    },[])
 
   
-   const Changeimage = async(e) =>{
-      console.log(e)
-      setImage(e.target.value)
-
+   const Changeimage = (e) =>{
+      const file = e.target.files[0]
+      let url = URL.createObjectURL(file)
+      setImage(url)
+      console.log(image)
    }
 
 
@@ -83,7 +85,13 @@ function Profile() {
                 type='file'
                 className='form-control'
                 />
-                <img src='C:\fakepath\face_co.png'/>
+
+                <Avatar 
+                alt="Remy Sharp" 
+                src={image} 
+                sx={{ width: 200, height: 200 }}
+                />
+                
             </div>
          
             <ColorButtons tittle='Guardar Cambios' type='submit'/>
