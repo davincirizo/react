@@ -14,6 +14,8 @@ function LoginUser() {
     const [errors,setErrors] = useState([]);
     const [errorAuth,setErrorAuth] = useState([]);
     const endponit_cookie = 'http://127.0.0.1:8000'
+    // storage.remove('authToken');
+    // storage.remove('authUser');
     const csrf = async()=>{
       await axios.get(`${endponit_cookie}/sanctum/csrf-cookie`);
     }

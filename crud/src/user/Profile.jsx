@@ -1,7 +1,6 @@
 import axios from "axios"
 import NavBar from "../component/general/NavBar"
 import storage from "../storage/Storage"
-import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import ColorButtons from "../component/general/Button"
 import { useNavigate } from "react-router-dom"
@@ -17,7 +16,8 @@ function Profile() {
     const [name,setName] = useState('')
     const [email,setEmail] = useState('')
     const [id,setId] = useState('')
-    const [image,setImage] = useState(null)
+    const [file,setFile] = useState(null)
+    const [url,setURL] = useState(null)
 
     const navigate = useNavigate()
 
@@ -28,6 +28,7 @@ function Profile() {
       setName(response.data.name) 
       setEmail(response.data.email)
       setId(response.data.id)
+      setFile(response.data.image)
    }
    useEffect(() =>{
     getUserLogued()
@@ -37,28 +38,46 @@ function Profile() {
    },[])
 
   
-   const Changeimage = (e) =>{
-      const file = e.target.files[0]
+   const Changeimage = async (e) =>{
+      const file = e
       let url = URL.createObjectURL(file)
-      setImage(url)
-      console.log(image)
+      setFile(e)
+      setURL(url)
+      console.log(file)
+
    }
 
 
-  const save = async (e) =>{
-    e.preventDefault()
-      const res = await axios.put(`${endpoint_put}${id}`,{
-        name:name,
-        email:email,
-      })
+  const save = async () =>{
+    // e.preventDefault()  
+      // const res = await axios.put(`${endpoint_put}${id}`,{
+      //   name:name,
+      //   email:email,
+      //   image:image,
+      // })
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('image', file);
 
-      storage.set('authUser',res.data.data);
+      const res = await axios.post(`${endpoint_put}${id}`, formData,{
+        headers:{'Content-Type':"multipart/form-data"},
+    } );
+
+      console.log(res)
+      // storage.set('authUser',res.data.data);
       navigate('/show_category')
   }
+
+  const handleSubmit= async(e)=>{
+    e.preventDefault();
+    await save();
+
+ }
     return (
     <>
     <NavBar/>
-    <form onSubmit={save} style={{marginLeft: '20px',marginTop:'20px'}}>
+    <form onSubmit={handleSubmit} style={{marginLeft: '20px',marginTop:'20px'}}>
     <div  className='mb-3'>
                 <label className='form-label'>Email</label>
                 <input
@@ -81,14 +100,15 @@ function Profile() {
                 <label className='form-label'>Avatar</label>
                 <input
                 
-                onChange={Changeimage}
+                onChange={(e)=>Changeimage(e.target.files[0])}
                 type='file'
                 className='form-control'
+                accept="image/*"
                 />
 
                 <Avatar 
                 alt="Remy Sharp" 
-                src={image} 
+                src={url} 
                 sx={{ width: 200, height: 200 }}
                 />
                 
