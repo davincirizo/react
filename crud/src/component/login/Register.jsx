@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 import ColorButtons from '../general/Button'
+import { Avatar } from "@mui/material"
 
 function Register() {
   const endpoint = 'http://127.0.0.1:8000/api/registro'  
@@ -13,37 +14,44 @@ function Register() {
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('');
   const [errors,setErrors] = useState([]);
-
+  const [file,setFile] = useState(null)
+  const [file_name,setfileName] = useState('')
+  const [url_file,setURL_File] = useState(null)
   const Register = async (event) =>{
     event.preventDefault()
-   
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('image', file);
+    formData.append('password', password);
+    
     try{
-      await axios.post(endpoint,{
-        name:name,
-        email:email,
-        password:password
-    })
-    navigate('/')
-  }
+      await axios.post(endpoint, formData,{
+          headers:{'Content-Type':"multipart/form-data"},
+      } );
+      navigate('/')  
+    }
+
+  
   catch(e){
     if(e.response.status === 400){
       setErrors(e.response.data.errors)
     }
   }
+  
     
     
 }
-  // const Register = async (e) =>{ 
-  //   console.log(e)
-  //   await axios.post(endpoint,{
-      
-  //         name:e.name,
-  //         email:e.email,
-  //         password:e.password,
-          
-  //     })
-  //     navigate('/show_category')
-  // }
+
+const Changeimage = async (e) =>{
+  const file = e
+  let url = URL.createObjectURL(file)
+  setFile(e)
+  setURL_File(url)
+  setfileName(e.name)
+  
+
+}
   return (
     <>
     <NavBar/>
@@ -78,12 +86,29 @@ function Register() {
                 <input
                 value={password}
                 onChange={(e)=> setPassword(e.target.value)}
-                type='text'
+                type='password'
                 className='form-control'
                 />
                 {errors.password &&(
                   <span>{errors.password}</span>
                 )}
+            </div>
+            <div className='mb-3'>
+                <label className='form-label'>Avatar</label>
+                <input
+                name='file'
+                onChange={(e)=>Changeimage(e.target.files[0])}
+                type='file'
+                className='form-control'
+                accept="image/*"
+                />
+
+                <Avatar
+                alt="Remy Sharp" 
+                src={url_file} 
+                sx={{ width: 200, height: 200 }}
+                />
+                
             </div>
 
 

@@ -29,6 +29,7 @@ const ShowCategory = () => {
             'Authorization': `Bearer ${token}`
           }
         })
+        // console.log(token)
         setCategory(response.data)
       }
       else{
@@ -39,8 +40,8 @@ const ShowCategory = () => {
 
     const deleteCategory = async (id) =>{
       await axios.delete(`${endpoint}/categories/${id}`)
-     
-  }
+      getAllCategory()
+  } 
 
   
  

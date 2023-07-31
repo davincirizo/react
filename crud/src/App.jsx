@@ -10,6 +10,7 @@ import ShowProductFilter from './component/product/ShowProductByCategory'
 import LoginUser from './component/login/Login'
 import Register from './component/login/Register'
 import Profile from './user/Profile'
+import CategorySpecific from './component/category/CategorySpecific'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/show_category' element={<ShowCategory/>}/>
         <Route path='/create_category' element={<CreateCategory/>}/>
         <Route path='/edit_category/:id' element={<EditCategory/>}/>
+        <Route path='/category_specific/:id' element={<CategorySpecific/>}/>
         
         <Route path='/show_product' element={<ShowProduct/>}/>
         <Route path='/create_product' element={<CreateProduct/>}/>

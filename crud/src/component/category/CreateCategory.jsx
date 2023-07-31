@@ -4,24 +4,33 @@ import { useNavigate } from 'react-router-dom'
 import NavBar from '../general/NavBar'
 import ColorButtons from '../general/Button'
 import { useThemeContext } from '../../context/ThemeContext'
+import InputManyImages from '../general/InputManyImages'
 
 
-const CreateCategory = () => {
+const CreateCategory = () => {  
     const endpoint = 'http://127.0.0.1:8000/api/categories'
     const [name,setName] = useState('')
     const [description,setDescription] = useState('')
     const {Theme} = useThemeContext()
-
+    const [images,setImages] = useState([])
 
     const navigate = useNavigate()
     
     const store = async (e) =>{
+
         e.preventDefault()
-        await axios.post(endpoint,{
-            name:name,
-            description:description,
-        })
-        navigate('/')
+        const formData = new FormData();
+        for (let i = 0; i < images.length; i++) {
+            formData.append('images[]', images[i].file);
+          }
+        formData.append('name', name);
+        formData.append('description', description);
+        // formData.append('images', files);
+       
+        await axios.post(endpoint, formData,{
+            headers:{'Content-Type':"multipart/form-data"},
+        } );
+        navigate('/show_category')
     }
     
     return (
@@ -45,6 +54,13 @@ const CreateCategory = () => {
                 onChange={(e)=> setDescription(e.target.value)}
                 type='text'
                 className='form-control'
+                />
+            </div>
+            <div  className='mb-3'>
+                <InputManyImages
+                images={images}
+                 setImages={setImages}
+         
                 />
             </div>
             

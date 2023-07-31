@@ -57,7 +57,9 @@ enviarSearch={enviarSearch}/>
             {result.map( (categori) => (
                 <tr key={categori.id}>
                     <td>{categori.id}</td>
+                    <Link to={`/category_specific/${categori.id}`}>
                     <td>{categori.name}</td>
+                    </Link>
                     <td>
                         <Link to={`/edit_category/${categori.id}`} className='btn btn-warning'>Edit</Link>
                         <button onClick={()=>deleteCategory(categori.id)} className='btn btn-danger'>Delete</button>

@@ -24,15 +24,6 @@ export default function BasicSelect(props) {
   
        
       };
-
-      // useEffect(() =>{
-      //     if(type_default){
-      //       settype(type_default)
-      //       console.log(type_default)
-      //     }
-
-      // },[])
-
   
   
     return (

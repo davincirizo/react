@@ -29,7 +29,8 @@ const settings = [
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
+  const endpoint_image = 'http://127.0.0.1:8000/storage/'
+     
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -167,7 +168,7 @@ function NavBar() {
     <Box sx={{ flexGrow: 0 }}>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Remy Sharp" src={`${endpoint_image}${storage.get('authUser').image}`} />
         </IconButton>
       </Tooltip>
       <Menu

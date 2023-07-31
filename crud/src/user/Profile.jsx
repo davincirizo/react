@@ -11,6 +11,7 @@ import { Avatar } from "@mui/material"
 function Profile() {
     const endpoint = 'http://127.0.0.1:8000/api/user'
     const endpoint_put = 'http://127.0.0.1:8000/api/profile/'
+    const urlImage = 'http://127.0.0.1:8000/storage/'
     const token = storage.get('authToken')
 
     const [name,setName] = useState('')
@@ -25,10 +26,16 @@ function Profile() {
       const response = await axios.get(endpoint,{headers: {
         'Authorization': `Bearer ${token}`
       }})
+      console.log(token)
       setName(response.data.name) 
       setEmail(response.data.email)
       setId(response.data.id)
       setFile(response.data.image)
+      if(response.data.image){
+      setURL(`${urlImage}${response.data.image}`)
+     console.log(url)
+
+      }
    }
    useEffect(() =>{
     getUserLogued()
@@ -43,7 +50,7 @@ function Profile() {
       let url = URL.createObjectURL(file)
       setFile(e)
       setURL(url)
-      console.log(file)
+      console.log(url)
 
    }
 
@@ -60,7 +67,7 @@ function Profile() {
       formData.append('email', email);
       formData.append('image', file);
 
-      const res = await axios.post(`${endpoint_put}${id}`, formData,{
+      const res = await axios.put(`${endpoint_put}${id}`, formData,{
         headers:{'Content-Type':"multipart/form-data"},
     } );
 
