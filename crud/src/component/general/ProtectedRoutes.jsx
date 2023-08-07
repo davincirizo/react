@@ -5,7 +5,7 @@ import storage from "../../storage/Storage"
 function ProtectedRoutes({children}) {
     const authUser = storage.get('authUser');
  if(!authUser){
-    return <Navigate to='/'/>
+    return <Navigate to='/login'/>
  }
  return <Outlet/>
 }

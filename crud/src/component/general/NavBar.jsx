@@ -54,6 +54,7 @@ function NavBar() {
     const token = storage.get('authToken')
     storage.remove('authToken');
     storage.remove('authUser');
+    console.log(storage.get('authUser'))
     await axios.post(enpoint,{},{
       headers: {
         'Authorization': `Bearer ${token}`
@@ -202,7 +203,23 @@ function NavBar() {
             <Typography textAlign="center">Logout</Typography>
           </MenuItem>
       </Menu>
-    </Box>):<>
+    </Box>):
+    <>
+    <Link to={'/login'}>
+      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+            Login
+          </Button>
+      </Box>
+    </Link>
+    <Link to={'/register'}>
+      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Button sx={{ my: 2, color: 'white', display: 'block' }}>
+            Register
+          </Button>
+      </Box>
+
+    </Link>
     </>}
   </Toolbar>
 </Container>

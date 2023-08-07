@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useState } from "react"
 import storage from "../../storage/Storage"
-import { Button } from "bootstrap"
+import { show_alert } from "../notification/ShowAlert"
 
 
 function LoginUser() {
@@ -24,17 +24,27 @@ function LoginUser() {
         await csrf();
       const res = await axios.post(endpoint,{
           email:data.email,
-          password:data.password,
-          
+          password:data.password,     
       })
-
+      
+      if(res.data.token){
       storage.set('authToken',res.data.token);
       storage.set('authUser',res.data.data);
-      // console.log(storage.get('authUser'))
-
       navigate('/show_category')
+
+      }
+    
+
+     
     }
+
       catch(e){
+        if(e.response.status == 401){
+          const msj = e.response.data.message
+          const icon = 'error'
+          navigate('/')
+          show_alert(msj,icon)
+        }
         if(e.response.status === 400){    
           setErrorAuth([])
           setErrors(e.response.data.errors) 
@@ -87,6 +97,15 @@ function LoginUser() {
       Register
     </button>
     </Link>
+    <Link to={'/reset-password'}>
+      Forgot Password
+    </Link>
+    <div>
+    <Link to={'/resend_email'}>
+      Resend Email
+    </Link>
+    </div>
+  
     </>
   )
 

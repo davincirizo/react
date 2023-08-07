@@ -5,6 +5,7 @@ import NavBar from '../general/NavBar'
 import ColorButtons from '../general/Button'
 import { useThemeContext } from '../../context/ThemeContext'
 import InputManyImages from '../general/InputManyImages'
+import { show_alert } from '../notification/ShowAlert'
 
 
 const CreateCategory = () => {  
@@ -27,10 +28,14 @@ const CreateCategory = () => {
         formData.append('description', description);
         // formData.append('images', files);
        
-        await axios.post(endpoint, formData,{
+        const response = await axios.post(endpoint, formData,{
             headers:{'Content-Type':"multipart/form-data"},
         } );
         navigate('/show_category')
+        const tipo = 'success'
+        const msg = response.data.msg
+        console.log(response.data)
+        show_alert(msg,tipo)
     }
     
     return (

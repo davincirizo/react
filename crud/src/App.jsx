@@ -11,6 +11,11 @@ import LoginUser from './component/login/Login'
 import Register from './component/login/Register'
 import Profile from './user/Profile'
 import CategorySpecific from './component/category/CategorySpecific'
+import DashboardPage from './component/Dashboard'
+import ResetPassword from './component/login/ResetPassword'
+import VerifyUser from './component/login/VerifyUser'
+import ResendEmail from './component/login/ResendEmail'
+import GetResetPassword from './component/login/GetResetPassword'
 
 
 function App() {
@@ -19,8 +24,16 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-      <Route path='/' element={<LoginUser/>}/>
+      <Route path='/' element={<DashboardPage/>}/>
+
+      <Route path='/login' element={<LoginUser/>}/>
       <Route path='/register' element={<Register/>}/>
+      <Route path='/resend_email' element={<ResendEmail/>}/>
+      <Route path='/reset-password' element={<ResetPassword/>}/>
+      <Route path='/reset-password/:token' element={<GetResetPassword/>}/>
+      <Route path='/verify/:id/:hash' element={<VerifyUser/>}/>
+
+      
       {/* <Route element={<ProtectedRoutes/>}> */}
         <Route path='/show_category' element={<ShowCategory/>}/>
         <Route path='/create_category' element={<CreateCategory/>}/>

@@ -17,6 +17,7 @@ const ShowCategory = () => {
     const {ViewProduct} = useViewProductContext()
     const {Theme} = useThemeContext()
     const navigate = useNavigate()
+    // console.log(storage.get('authToken'))
     useEffect (() =>{
         getAllCategory()
     },[])
@@ -33,7 +34,7 @@ const ShowCategory = () => {
         setCategory(response.data)
       }
       else{
-        navigate('/')
+        navigate('/login')
       }
         
     }
