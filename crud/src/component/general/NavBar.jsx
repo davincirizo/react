@@ -57,7 +57,7 @@ function NavBar() {
     console.log(storage.get('authUser'))
     await axios.post(enpoint,{},{
       headers: {
-        'Authorization': `Bearer ${token}`
+            'Authorization': `Bearer ${token}`
       }
     });
     navigate('/')
